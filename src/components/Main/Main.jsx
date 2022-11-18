@@ -1,7 +1,6 @@
 import './Main.css';
 import ProductItem from '../ProductItems/ProductItem';
 // import prodcutDetial from '../ProductItems/FETCH_API/prodcutDetial';
-import asd from "../../asd.png"
 
 
 
@@ -24,8 +23,6 @@ function Main() {
     return (
         <div className="main">
             {product}
-            <img src={asd}
-             alt="" />
         </div>
     );
 }
