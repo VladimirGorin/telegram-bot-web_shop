@@ -2,6 +2,7 @@ import './App.css';
 import {useEffect} from "react";
 import {useTelegram} from "./hooks/useTelegram";
 import Header from "./components/Header/Header";
+import Main from "./components/Main/Main";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
     return (
         <div className="App">
             <Header />
+            <Main />
         </div>
     );
 }
