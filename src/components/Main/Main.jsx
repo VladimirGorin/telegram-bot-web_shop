@@ -1,12 +1,9 @@
 import './Main.css';
 import ProductItem from '../ProductItems/ProductItem';
-import prodcutDetial from '../ProductItems/FETCH_API/prodcutDetial';
+// import prodcutDetial from '../ProductItems/FETCH_API/prodcutDetial';
 
 
 function Main() {
-    const ProductName = "game pc"
-    const ProdcutPrice = "100$"
-    prodcutDetial()
     const ItemParams = [
         {
             "name": "Product1",
