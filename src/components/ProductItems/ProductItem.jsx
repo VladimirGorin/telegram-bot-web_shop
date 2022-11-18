@@ -8,7 +8,7 @@ function ProductItem(props) {
             <div className="ProductItem-name">{props.name}</div>
             <div className="ProductItem-price">{props.price}</div>
             <div className="ProductItem-buy">
-                <a href={props?.href}>К товару</a></div>
+                <a href={props?.href} target="_blank">К товару</a></div>
         </div>
     );
 }
