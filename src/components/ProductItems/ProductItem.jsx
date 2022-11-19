@@ -49,7 +49,7 @@ function ProductItem(props) {
                                 <p><img src={tablet_Img} alt="" /> {props.price_moth} в месяц</p>
                             </div>
                             <div class="main__bottom">
-                                <button class="buy"><a href={props.link}>Купить <br />один клик</a></button>
+                                <button class="buy"><a href={props.link} target={'_blank'}>Купить <br />один клик</a></button>
                                 <button class="cart"><img src={shopingCart_Img} alt="" /></button>
                             </div>
                 </div>
