@@ -44,14 +44,14 @@ function ProductItem(props) {
                             </div>
                 </div>
                 <div class="main__iBottom">
-                            <div class="main__top">
-                                <span>{props.price}</span>
-                                <p><img src={tablet_Img} alt="" /> {props.price_moth} в месяц</p>
-                            </div>
-                            <div class="main__bottom">
-                                <button class="buy"><a href={props.link} target={'_blank'}>Купить <br />один клик</a></button>
-                                <button class="cart"><img src={shopingCart_Img} alt="" /></button>
-                            </div>
+                    <div class="main__top">
+                        <span>{props.price}</span>
+                        <p><img src={tablet_Img} alt="" /> {props.price_moth} в месяц</p>
+                    </div>
+                    <div class="main__bottom">
+                        <button class="buy"><a href={props.link} target={'_blank'}>Купить <br />один клик</a></button>
+                        <button class="cart"><img src={shopingCart_Img} alt="" /></button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -110,7 +110,7 @@
     font-size: 12px;
     line-height: 125.4%;
     /* or 15px */
-    color: #151621;
+    color: #FFFFFF;  
   }
 .main__itemRow .main__item .main__iDownCenter {
     display: flex;
@@ -124,7 +124,7 @@
     font-size: 18px;
     line-height: 125.4%;
     /* or 23px */
-    color: #151621;
+    color: #FFFFFF;  
   }
 .main__itemRow .main__item .main__iBottom {
     display: flex;
@@ -149,16 +149,14 @@
     font-size: 12px;
     line-height: 125.4%;
     /* identical to box height, or 15px */
-    color: #151621;
-  }
+    color: #FFFFFF;  }
 .main__itemRow .main__item .main__iBottom .main__top span {
     font-style: normal;
     font-weight: 800;
     font-size: 25px;
     line-height: 125.4%;
     /* or 31px */
-    color: #151621;
-  }
+    color: #FFFFFF;  }
 .main__itemRow .main__item .main__iBottom .main__bottom {
     display: flex;
     flex-direction: row;
