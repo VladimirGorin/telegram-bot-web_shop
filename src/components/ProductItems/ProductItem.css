@@ -110,7 +110,7 @@
     font-size: 12px;
     line-height: 125.4%;
     /* or 15px */
-    color: #FFFFFF;  
+    color: black; 
   }
 .main__itemRow .main__item .main__iDownCenter {
     display: flex;
@@ -124,7 +124,7 @@
     font-size: 18px;
     line-height: 125.4%;
     /* or 23px */
-    color: #FFFFFF;  
+    color: var(--tg-theme-text-color);  
   }
 .main__itemRow .main__item .main__iBottom {
     display: flex;
@@ -149,14 +149,16 @@
     font-size: 12px;
     line-height: 125.4%;
     /* identical to box height, or 15px */
-    color: #FFFFFF;  }
+    color: var(--tg-theme-text-color);
+  }
 .main__itemRow .main__item .main__iBottom .main__top span {
     font-style: normal;
     font-weight: 800;
     font-size: 25px;
     line-height: 125.4%;
     /* or 31px */
-    color: #FFFFFF;  }
+    color: var(--tg-theme-text-color);
+  }
 .main__itemRow .main__item .main__iBottom .main__bottom {
     display: flex;
     flex-direction: row;
@@ -173,7 +175,7 @@
     line-height: 82.9%;
     /* or 15px */
     text-align: center;
-    color: #FFFFFF;
+    color: var(--tg-theme-text-color);    
     background: #E51C23;
     border-radius: 5px;
     border: none;
