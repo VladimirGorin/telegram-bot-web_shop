@@ -8,40 +8,24 @@ import { useState } from 'react';
 import {useTelegram} from "../../hooks/useTelegram"  
 
 
+
 function ProductItem(props) {
-    const {tg} = useTelegram();
-    const [addedItems, setAddedItems] = useState([])
+    const {tg,queryId} = useTelegram();
 
-    const getTotalPrice = (item = []) => {
-        console.log(item)
-        return item.reduce((acc, item) => {
-            let itemPrice = acc += props.price
-            console.log(itemPrice)
-    
-            return acc += item.price
-        }, 0)
-    }
-    
 
-    const onAdd = (product) => {
-        const alreadyAdded = addedItems.find(item => item.id === props.id)
-        let newItems = [];
-        if(alreadyAdded) {
-            newItems = addedItems.filter(item => item.id != props.id)
-        } else {
-            newItems = [...addedItems, props.id]
+    const onAdd = () => {
+        const data = {
+            product_price: props.price,
+            queryId
         }
 
-        setAddedItems(newItems)
-
-        if(newItems.length === 0) {
-            tg.MainButton.hide();
-        }else{
-            tg.MainButton.show();
-            tg.MainButton.setParams({
-                text: `Купить ${getTotalPrice(newItems)}`
-            })
-        }
+        fetch("http://185.225.35.7:8080/web-data", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data)
+        })
     }
 
 

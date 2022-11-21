@@ -3,12 +3,16 @@ import ProductItem from '../ProductItems/ProductItem';
 // import prodcutDetial from '../ProductItems/FETCH_API/prodcutDetial';
 import { GetProduct } from '../GetProduct/GetProduct';
 
+
+
+
 function Main() {
 
     const useProdcutState = GetProduct()
-    console.log(useProdcutState)
 
     const ItemParams = []
+
+    
 
     for(let i = 1; i < 40; i++){
         ItemParams.push({

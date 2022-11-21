@@ -20,7 +20,6 @@ const Header = () => {
     }
 
 
-    console.log(navigate)
     return (
         <div className={'header'}>
             <div className={'header__body'}>
