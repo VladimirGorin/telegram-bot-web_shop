@@ -18,8 +18,9 @@ function ProductItem(props) {
             product_price: props.price,
             queryId
         }
-
-        fetch("http://185.225.35.7:8080/web-data", {
+        tg.MainButton.show();
+        
+        fetch("http://185.225.35.7:1280/web-data", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
