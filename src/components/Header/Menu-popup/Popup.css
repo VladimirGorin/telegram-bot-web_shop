@@ -57,7 +57,9 @@
 .popup__item{
     width: 35%;
     padding: 10px;
-    overflow-x: scroll;
+    height: 30rem;
+    display:none;
+
     overflow-y: scroll;
 }
 
@@ -71,10 +73,13 @@
     align-items: center;
     display: flex;
     padding-left: 10px;
-    max-width: 200px;
+    min-width: 200px;
 }
 
+
+
 .item:hover{
+    
     background: url(https://comtrading.ua/assets/images/search-category_tab.png) no-repeat 0 0;
     background-size: 100% 100%;
     color: rgb(255, 255, 255);
@@ -83,4 +88,6 @@
 .popup__item-info{
     width: 65%;
     padding: 10px;
+    height: 30rem;
+    overflow-y: scroll;
 }

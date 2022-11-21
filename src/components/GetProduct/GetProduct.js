@@ -11,11 +11,13 @@ export function GetProduct() {
     let items = []
     let cur = Object.values(api)
     let data = cur.map(p => items.push(
-        {
+        {   
+            "id": [p.ID],
             "names": [p["Название товара"]],
             "prices": [p["Минимальная цена"]],
             "links": [p.hotline_url],
-            "categori": [p["Название категории"]]
+            "categori": [p["Название категории"]],
+            "price_moth": [p["Дата публикации"]]
         }
         ))
     

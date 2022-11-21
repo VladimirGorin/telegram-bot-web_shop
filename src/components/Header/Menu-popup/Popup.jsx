@@ -1,22 +1,24 @@
 import React from "react";
 import "./Popup.css";
 import { GetProduct } from "../../GetProduct/GetProduct";
+import { useState } from "react";
 // rfce
 function Popup(props) {
   const useProdcutState = GetProduct();
-
-  console.log(useProdcutState);
+  let state = useState();
 
   const ItemParams = [];
 
-  for (let i = 1; i < 15; i++) {
-    console.log(useProdcutState.items[i].names);
+  for (let i = 1; i < 20; i++) {
     ItemParams.push({
-      categori: useProdcutState.items[i].categori
+      categori: useProdcutState.items[i].categori,
+      links: useProdcutState.items[i].links,
+
     });
   }
 
-  let categori = ItemParams.map((p) => <div className="item">{p.categori}</div>);
+  let list = ItemParams.map((p) => <a href={p.links} target="_blank"><div className="item">{p.categori}</div></a>);
+
 
   return props.trigger ? (
     <div className="popup__wrapper">
@@ -26,13 +28,8 @@ function Popup(props) {
           onClick={() => props.setTrigger(false)}
         ></div>
         <div className="popup__catalog">
-          <div className="popup__item">
-            {categori}
-          </div>
-          <div className="popup__item-info">
-            <div className="item-in">Итем</div>
-            <div className="item-in">Итем</div>
-          </div>
+          <div className="popup__item">{list}</div>
+          <div className="popup__item-info">{list}</div>
         </div>
       </div>
     </div>
