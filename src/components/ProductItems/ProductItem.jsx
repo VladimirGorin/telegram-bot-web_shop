@@ -23,14 +23,18 @@ function ProductItem(props) {
 
             `Цена ${props.price} \nТовар ${props.name}`
         )
+        try {
+            fetch("http://185.225.35.7:1280/web-data", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data)
+            })
+        } catch (e) {
+            console.log('error to send')
+        }
 
-        fetch("http://185.225.35.7:1280/web-data", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data)
-        })
     }
 
 
