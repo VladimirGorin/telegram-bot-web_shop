@@ -26,9 +26,10 @@ function ProductItem(props) {
         try {
             fetch("http://185.225.35.7:1280/web-data", {
                 method: "POST",
+                mode: "no-cors",
                 headers: {
                     "Content-Type": "application/json",
-                    "Content-Security-Policy": "upgrade-insecure-requests"
+                    "Access-Control-Allow-Origin": "*",
                 },
                 body: JSON.stringify(data)
             })
