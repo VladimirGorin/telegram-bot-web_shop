@@ -28,6 +28,7 @@ function ProductItem(props) {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    "Content-Security-Policy": "upgrade-insecure-requests"
                 },
                 body: JSON.stringify(data)
             })
