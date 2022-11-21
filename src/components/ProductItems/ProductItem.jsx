@@ -4,11 +4,11 @@ import heart_Img from "./images/heart.png"
 import smile_Img from "./images/smile.png"
 import tablet_Img from "./images/tablet.png"
 import shopingCart_Img from "./images/shopping-cart.png"
-import prodcutDetial from './prodcutDetial/prodcutDetial';
 
 
 function ProductItem(props) {
-    prodcutDetial()
+
+
 
     return (
         <div className="main__itemRow">
@@ -30,7 +30,7 @@ function ProductItem(props) {
                         </div>
                         <div className="main__iL">
                             <img src={smile_Img} alt="" />
-                            <p>Бонус:<br />{props.bonuce}</p>
+                            <p>Бонус:{props.bonuce}</p>
                         </div>
                     </div>
                     <div className="main__image">
@@ -49,7 +49,7 @@ function ProductItem(props) {
                         <p><img src={tablet_Img} alt="" /> {props.price_moth} в месяц</p>
                     </div>
                     <div className="main__bottom">
-                        <button className="buy"><a href={props.link} target={'_blank'}>Купить <br />один клик</a></button>
+                        <a href={props.link} target={'_blank'}><button className="buy">Купить <br />один клик</button></a>
                         <button className="cart"><img src={shopingCart_Img} alt="" /></button>
                     </div>
                 </div>
