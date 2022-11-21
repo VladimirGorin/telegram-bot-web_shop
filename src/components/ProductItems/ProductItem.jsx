@@ -7,9 +7,17 @@ import shopingCart_Img from "./images/shopping-cart.png"
 import { useState } from 'react';
 import {useTelegram} from "../../hooks/useTelegram"  
 
+const getTotalPrice = (item) => {
+    return item.reduce((acc, item) => {
+        return acc += item.price
+    }, 0)
+}
+
 function ProductItem(props) {
     const {tg} = useTelegram();
     const [addedItems, setAddedItems] = useState([])
+
+
 
     const onAdd = (product) => {
         const alreadyAdded = addedItems.find(item => item.id === props.id)
@@ -27,6 +35,9 @@ function ProductItem(props) {
             tg.MainButton.hide();
         }else{
             tg.MainButton.show();
+            tg.MainButton.setParams({
+                text: `Купить ${getTotalPrice(newItems)}`
+            })
         }
     }
 
