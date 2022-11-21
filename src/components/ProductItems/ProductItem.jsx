@@ -31,6 +31,8 @@ function ProductItem(props) {
                 },
                 body: JSON.stringify(data)
             })
+            console.log("Fetch request sended")
+
         } catch (e) {
             console.log('error to send')
         }
