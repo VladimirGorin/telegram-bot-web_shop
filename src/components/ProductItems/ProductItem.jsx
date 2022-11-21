@@ -7,22 +7,25 @@ import shopingCart_Img from "./images/shopping-cart.png"
 import { useState } from 'react';
 import {useTelegram} from "../../hooks/useTelegram"  
 
-const getTotalPrice = (item) => {
-    return item.reduce((acc, item) => {
-        return acc += item.price
-    }, 0)
-}
 
 function ProductItem(props) {
     const {tg} = useTelegram();
     const [addedItems, setAddedItems] = useState([])
 
-
+    const getTotalPrice = (item = []) => {
+        console.log(item)
+        return item.reduce((acc, item) => {
+            let itemPrice = acc += props.price
+            console.log(itemPrice)
+    
+            return acc += item.price
+        }, 0)
+    }
+    
 
     const onAdd = (product) => {
         const alreadyAdded = addedItems.find(item => item.id === props.id)
         let newItems = [];
-
         if(alreadyAdded) {
             newItems = addedItems.filter(item => item.id != props.id)
         } else {
