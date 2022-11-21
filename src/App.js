@@ -5,7 +5,7 @@ import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import ProductCartItems from './components/ProductCartItems/ProductCartItems';
 import {Route, Routes} from "react-router-dom"
-
+import PaymentsForm from './components/PaymentsForm/PaymentsForm';
 
 function App() {
     const {onToggleButton, tg} = useTelegram();
@@ -21,6 +21,8 @@ function App() {
 
                 <Route path="/" element={<Main />}  />
                 <Route path="/item/*" element={<ProductCartItems />}  />
+                <Route path="/paymentForm" element={<PaymentsForm />}  />
+
             </Routes>
         </div>
         

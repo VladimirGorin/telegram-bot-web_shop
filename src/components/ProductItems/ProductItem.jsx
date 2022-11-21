@@ -6,7 +6,9 @@ import tablet_Img from "./images/tablet.png"
 import shopingCart_Img from "./images/shopping-cart.png"
 import { useState } from 'react';
 import {useTelegram} from "../../hooks/useTelegram"  
-
+import {Routes, Route} from "react-router-dom";
+import {Link} from "react-router-dom";
+import ProductCartItems from '../ProductCartItems/ProductCartItems';
 
 
 function ProductItem(props) {
@@ -14,30 +16,12 @@ function ProductItem(props) {
 
 
     const onAdd = () => {
-        const data = {
-            product_price: props.price,
-            queryId
-        }
-        tg.MainButton.show();
         alert(
-
             `Цена ${props.price} \nТовар ${props.name}`
         )
-        try {
-            fetch("http://185.225.35.7:1280/web-data", {
-                method: "POST",
-                mode: "no-cors",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": "*",
-                },
-                body: JSON.stringify(data)
-            })
-            console.log("Fetch request sended")
+        tg.MainButton.show();
+        
 
-        } catch (e) {
-            console.log('error to send')
-        }
 
     }
 
@@ -82,7 +66,7 @@ function ProductItem(props) {
                     </div>
                     <div className="main__bottom">
                         <a href={props.link} target={'_blank'}><button className="buy">Купить <br />один клик</button></a>
-                        <button onClick={onAdd} className="cart"><img src={shopingCart_Img} alt=""/></button>
+                        <Link to="/paymentForm" ><button onClick={onAdd} className="cart"><img src={shopingCart_Img} alt=""/></button></Link>
                     </div>
                 </div>
             </div>
