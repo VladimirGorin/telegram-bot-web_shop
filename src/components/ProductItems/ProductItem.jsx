@@ -21,8 +21,7 @@ function ProductItem(props) {
         tg.MainButton.show();
         alert(
 
-            `Цена ${props.price} \n
-             Товар ${props.name}`
+            `Цена ${props.price} \nТовар ${props.name}`
         )
 
         fetch("http://185.225.35.7:1280/web-data", {
