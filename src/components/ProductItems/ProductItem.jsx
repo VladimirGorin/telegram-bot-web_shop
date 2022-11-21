@@ -19,7 +19,11 @@ function ProductItem(props) {
             queryId
         }
         tg.MainButton.show();
-        alert(props.price)
+        alert(
+
+            `Цена ${props.price} \n
+             Товар ${props.name}`
+        )
 
         fetch("http://185.225.35.7:1280/web-data", {
             method: "POST",
