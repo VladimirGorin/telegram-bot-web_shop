@@ -2,64 +2,55 @@ import React, { useCallback, useEffect, useState } from "react";
 import "./PaymentsForm.css";
 import { useTelegram } from "../../hooks/useTelegram";
 import { Link } from "react-router-dom";
-import {decode as base64_decode, encode as base64_encode} from 'base-64';
-import crypto from 'crypto'
+import { decode as base64_decode, encode as base64_encode } from "base-64";
+// import * as crypto from "crypto"
+// import { createHash } from "crypto"
 
-const PaymentsForm = () => {
+const PaymentsForm  = () => {
   const [country, setCountry] = useState("");
   const [street, setStreet] = useState("");
   const [subject, setSubject] = useState("physical");
   const [telephone, setTel] = useState("");
-  const [payment, setPayment] = useState("monobank");
+  const [payment, setPayment] = useState("liqpay");
 
   const { tg } = useTelegram();
-  const [priat, monobank] = useState("");
-  // data:eyJwdWJsaWNfa2V5Ijoic2FuZGJveF9pMzIyMjU4Mzc5NTQiLCJ2ZXJzaW9uIjoiMyIsImFjdGlvbiI6InBheSIsImFtb3VudCI6IjMwMCIsImN1cnJlbmN5IjoiVUFIIiwiZGVzY3JpcHRpb24iOiJ0ZXN0Iiwib3JkZXJfaWQiOiIwMDAwMDEifQ==
-  // signature:skaMSeqYOlIXP9Mkb2+MAcsSuEw=
+  const [api, setApi] = useState("");
 
+  const [SignatureKey, setSignatureKey] = useState("");
+  const [DataKey, setDataKey] = useState("");
 
-  const public_key = "sandbox_i32225837954";
-  const private_key = "sandbox_EBKLJ9d4MxgYRkF0SZ88EXabmmnskRJuuKbdxP0P";
-  const json_string = JSON.stringify({"public_key": "sandbox_i32225837954","version":"3","action":"pay","amount":"3","currency":"UAH","description":"test","order_id":"000001"})
+  const test = JSON.stringify({ value: "value" });
+
+  useEffect( () => {
+    async function fetchData() {
+      const response = await fetch(`/liqpay-payment`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          public_key: "sandbox_i32225837954",
+          version: "3",
+          action: "pay",
+          amount: "3",
+          currency: "UAH",
+          description: "test",
+          order_id: "000001",
+        }),
+      });
   
+      const data = await response.json();
+      setApi(data);
+      console.log(data);
+    }
 
-  const data = base64_encode(json_string);
-  const sign_string = private_key + data + public_key;
-  const sha1 = crypto.createHash('sha1')
-  sha1.update(sign_string)
+    fetchData();
 
-  console.log(sign_string)
-
-
-  // const onSendData = useCallback(() => {
-  //     const data = {
-  //         country,
-  //         street,
-  //         subject
-  //     }
-  //     tg.sendData(JSON.stringify(data));
-  // }, [country, street, subject])
-
-  // useEffect(() => {
-  //     tg.onEvent('mainButtonClicked', onSendData)
-  //     return () => {
-  //         tg.offEvent('mainButtonClicked', onSendData)
-  //     }
-  // }, [onSendData])
-
-  //   useEffect(() => {
-  //     if (!street || !street || !telephone) {
-  //       tg.MainButton.hide();
-  //     } else {
-  //       tg.MainButton.show();
-  //       tg.MainButton.setParams({
-  //         text: "Отправить данные",
-  //       });
-  //     }
-  //   }, [country, street]);
-
-
-
+    // fetch("/api")
+    // .then(response => response.json())
+    // .then(res => setApi(res.payment))
+  }, []);
   const onChangeCountry = (e) => {
     setCountry(e.target.value);
   };
@@ -77,14 +68,6 @@ const PaymentsForm = () => {
 
   const onChangeTelephone = (e) => {
     setTel(e.target.value);
-  };
-
-  const checkerBank = (e) => {
-    if (payment === "monobank") {
-      console.log(payment);
-      monobank(payment);
-    } else if (payment === "privatbank") {
-    }
   };
 
   return (
@@ -116,21 +99,16 @@ const PaymentsForm = () => {
           <option value={"physical"}>Физ. лицо</option>
           <option value={"legal"}>Юр. лицо</option>
         </select>
-
-        <select value={payment} onChange={onChangePayment} className={"select"}>
-          <option value={"monobank"} onClick={checkerBank}>
-            liqpay
-          </option>
+        <select value={payment} className={"select"}>
+          <option value={"liqpay"}>liqpay</option>
           {/* <option value={"privatbank"} onClick={checkerBank}>Моно банк</option> */}
         </select>
         <br />
-
-        <form method="POST" action="https://www.liqpay.ua/api/3/checkout" acceptCharset="utf-8">
-            <input type="hidden" name="data" value={data}/>
-            <input type="hidden" name="signature" value={sign_string}/>
-            <input type="image" src="//static.liqpay.ua/buttons/p1ru.radius.png"/>
+        <form method="POST" action="https://www.liqpay.ua/api/3/checkout" accept-charset="utf-8">
+          <input type="hidden" name="data" value={DataKey} />
+          <input type="hidden" name="signature" value={SignatureKey} />
+          <input type="image" src="//static.liqpay.ua/buttons/p1ru.radius.png"/>
         </form>
-
       </div>
       <div className="right"></div>
     </div>

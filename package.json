@@ -11,14 +11,13 @@
     "cors": "^2.8.5",
     "crypto-browserify": "^3.12.0",
     "express": "^4.18.2",
-    "liqpay": "^0.0.1",
-    "liqpay-sdk-nodejs": "^1.0.3",
-    "monobank-api-client": "^1.0.2",
+    "isomorphic-webcrypto": "^2.3.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",
-    "react-scripts": "4.0.3",
-    "web-vitals": "^2.1.4"
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4",
+    "webcrypto": "^0.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,5 +36,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "process": "^0.11.10"
+  },
+  "proxy":"http://localhost:3001"
 }
