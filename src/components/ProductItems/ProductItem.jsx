@@ -6,10 +6,9 @@ import tablet_Img from "./images/tablet.png"
 import shopingCart_Img from "./images/shopping-cart.png"
 import { useState } from 'react';
 import {useTelegram} from "../../hooks/useTelegram"  
-import {Routes, Route} from "react-router-dom";
-import {Link} from "react-router-dom";
+import {Link, Route, Routes} from "react-router-dom";
 import ProductCartItems from '../ProductCartItems/ProductCartItems';
-
+import ProductCart from '../ProductCartItems/ProdcutCart/ProductCart.jsx';
 
 function ProductItem(props) {
     const {tg,queryId} = useTelegram();
@@ -19,12 +18,20 @@ function ProductItem(props) {
         alert(
             `Цена ${props.price} \nТовар ${props.name}`
         )
-        tg.MainButton.show();
-        
-
 
     }
+    const cartProduct = () => {
+        let productInfo = {
+            "name": props.name[0],
+            "price": props.price[0],
+            "img": props.img,
+            "link": props.link
 
+        }
+        
+        props.productLink(productInfo)
+
+    }
 
     return (
         <div className="main__itemRow">
@@ -65,7 +72,8 @@ function ProductItem(props) {
                         <p><img src={tablet_Img} alt="" />{props.price_moth} в месяц</p>
                     </div>
                     <div className="main__bottom">
-                        <a href={props.link} target={'_blank'}><button className="buy">Купить <br />один клик</button></a>
+
+                        <Link onClick={cartProduct} to={props.link}><button  className="buy">Купить <br />один клик</button></Link>
                         <Link to="/paymentForm" ><button onClick={onAdd} className="cart"><img src={shopingCart_Img} alt=""/></button></Link>
                     </div>
                 </div>

@@ -8,7 +8,7 @@ import { useState} from 'react';
 import {useNavigate} from "react-router-dom"
 
 
-const Header = () => {
+const Header = (props) => {
     const {user, onClose} = useTelegram();
     // Привет {user?.username} !
     const [buttonPopup, setButtonPopup] = useState(false);
@@ -26,7 +26,7 @@ const Header = () => {
                 <a onClick={getBack}><div className="header__back">Назад</div></a>
                 <a href='/'><div className="header__logo">ctm.ua</div></a>
                 <div className="header__navitgation"><div className='header_nav-menu'  onClick={() => setButtonPopup(true)}>{/* after element in css */}</div></div>
-                <Popup trigger={buttonPopup} setTrigger={setButtonPopup}/>
+                <Popup product={props.product} trigger={buttonPopup} setTrigger={setButtonPopup}/>
             </div>
         </div>
     );

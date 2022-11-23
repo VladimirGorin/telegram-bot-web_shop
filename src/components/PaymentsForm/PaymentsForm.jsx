@@ -3,7 +3,7 @@ import "./PaymentsForm.css";
 import { useTelegram } from "../../hooks/useTelegram";
 import { Link } from "react-router-dom";
 import {decode as base64_decode, encode as base64_encode} from 'base-64';
-
+import crypto from 'crypto'
 
 const PaymentsForm = () => {
   const [country, setCountry] = useState("");
@@ -14,8 +14,8 @@ const PaymentsForm = () => {
 
   const { tg } = useTelegram();
   const [priat, monobank] = useState("");
-//   data:eyJwdWJsaWNfa2V5Ijoic2FuZGJveF9pMzIyMjU4Mzc5NTQiLCJ2ZXJzaW9uIjoiMyIsImFjdGlvbiI6InBheSIsImFtb3VudCI6IjMwMCIsImN1cnJlbmN5IjoiVUFIIiwiZGVzY3JpcHRpb24iOiJ0ZXN0Iiwib3JkZXJfaWQiOiIwMDAwMDEifQ==
-//   signature:skaMSeqYOlIXP9Mkb2+MAcsSuEw=
+  // data:eyJwdWJsaWNfa2V5Ijoic2FuZGJveF9pMzIyMjU4Mzc5NTQiLCJ2ZXJzaW9uIjoiMyIsImFjdGlvbiI6InBheSIsImFtb3VudCI6IjMwMCIsImN1cnJlbmN5IjoiVUFIIiwiZGVzY3JpcHRpb24iOiJ0ZXN0Iiwib3JkZXJfaWQiOiIwMDAwMDEifQ==
+  // signature:skaMSeqYOlIXP9Mkb2+MAcsSuEw=
 
 
   const public_key = "sandbox_i32225837954";
@@ -25,8 +25,10 @@ const PaymentsForm = () => {
 
   const data = base64_encode(json_string);
   const sign_string = private_key + data + public_key;
-  const signature = base64_encode(sign_string)
-  console.log(signature)
+  const sha1 = crypto.createHash('sha1')
+  sha1.update(sign_string)
+
+  console.log(sign_string)
 
 
   // const onSendData = useCallback(() => {
@@ -55,6 +57,8 @@ const PaymentsForm = () => {
   //       });
   //     }
   //   }, [country, street]);
+
+
 
   const onChangeCountry = (e) => {
     setCountry(e.target.value);
@@ -115,15 +119,15 @@ const PaymentsForm = () => {
 
         <select value={payment} onChange={onChangePayment} className={"select"}>
           <option value={"monobank"} onClick={checkerBank}>
-            Приват банк
+            liqpay
           </option>
           {/* <option value={"privatbank"} onClick={checkerBank}>Моно банк</option> */}
         </select>
         <br />
 
         <form method="POST" action="https://www.liqpay.ua/api/3/checkout" acceptCharset="utf-8">
-            <input type="hidden" name="data" value="eyJwdWJsaWNfa2V5Ijoic2FuZGJveF9pMzIyMjU4Mzc5NTQiLCJ2ZXJzaW9uIjoiMyIsImFjdGlvbiI6InBheSIsImFtb3VudCI6IjMwMCIsImN1cnJlbmN5IjoiVUFIIiwiZGVzY3JpcHRpb24iOiJ0ZXN0Iiwib3JkZXJfaWQiOiIwMDAwMDEifQ=="/>
-            <input type="hidden" name="signature" value="skaMSeqYOlIXP9Mkb2+MAcsSuEw="/>
+            <input type="hidden" name="data" value={data}/>
+            <input type="hidden" name="signature" value={sign_string}/>
             <input type="image" src="//static.liqpay.ua/buttons/p1ru.radius.png"/>
         </form>
 

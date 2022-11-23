@@ -2,24 +2,25 @@ import './Main.css';
 import ProductItem from '../ProductItems/ProductItem';
 // import prodcutDetial from '../ProductItems/FETCH_API/prodcutDetial';
 import { GetProduct } from '../GetProduct/GetProduct';
+import { useState } from 'react';
+import {Link, Route, Routes} from "react-router-dom";
 
-
-
-
-function Main() {
-
+function Main({currentLink}) {
     const useProdcutState = GetProduct()
+    const [link, setLink] = useState()
 
     const ItemParams = []
 
-    
+    let maxValueInObject = useProdcutState.items.length
 
     for(let i = 1; i < 40; i++){
+        let links = useProdcutState.items[i].links[0].replace("https://hotline.ua/", "")
+        
         ItemParams.push({
             "id": useProdcutState.items[i].id,
             "name": useProdcutState.items[i].names,
             "price":useProdcutState.items[i].prices,
-            "link":useProdcutState.items[i].links,
+            "link":links,
             "delivery": "В наличии",
             "credit": "0",
             "bonuce": "0",
@@ -28,7 +29,12 @@ function Main() {
         },)
 
     }
-    
+
+    const productLinkUpdate = (link) => {
+        currentLink(link)
+
+    }
+
 
     let product = ItemParams.map(p => <ProductItem name={p.name} 
             price={p?.price} 
@@ -39,6 +45,7 @@ function Main() {
             credit={p?.credit}
             price_moth={p?.price_moth}
             id={p.id}
+            productLink={productLinkUpdate}
     />)
 
 
