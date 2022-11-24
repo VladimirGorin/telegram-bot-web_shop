@@ -1,12 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 import "./PaymentsForm.css";
 import { useTelegram } from "../../hooks/useTelegram";
-import { Link } from "react-router-dom";
-import { decode as base64_decode, encode as base64_encode } from "base-64";
-// import * as crypto from "crypto"
-// import { createHash } from "crypto"
+import axios from "axios";
 
-const PaymentsForm  = () => {
+const PaymentsForm = () => {
   const [country, setCountry] = useState("");
   const [street, setStreet] = useState("");
   const [subject, setSubject] = useState("physical");
@@ -21,15 +18,28 @@ const PaymentsForm  = () => {
 
   const test = JSON.stringify({ value: "value" });
 
-  useEffect( () => {
+  // fetch(`http://185.225.35.7:3001/liqpay-payment`, {
+  //       method: "POST",
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         public_key: "sandbox_i32225837954",
+  //         version: "3",
+  //         action: "pay",
+  //         amount: "3",
+  //         currency: "UAH",
+  //         description: "test",
+  //         order_id: "000001",
+  //       }),
+  //     });
+
+  useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`http://185.225.35.7:3001/liqpay-payment`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
+      const response = await axios.post(
+        "http://185.225.35.7:3001/liqpay-payment",
+        {
           public_key: "sandbox_i32225837954",
           version: "3",
           action: "pay",
@@ -37,10 +47,10 @@ const PaymentsForm  = () => {
           currency: "UAH",
           description: "test",
           order_id: "000001",
-        }),
-      });
-  
-      const data = await response.json();
+        }
+      );
+
+      const data = await response.data;
       setApi(data);
       console.log(data);
     }
@@ -104,10 +114,17 @@ const PaymentsForm  = () => {
           {/* <option value={"privatbank"} onClick={checkerBank}>Моно банк</option> */}
         </select>
         <br />
-        <form method="POST" action="https://www.liqpay.ua/api/3/checkout" acceptCharset="utf-8">
+        <form
+          method="POST"
+          action="https://www.liqpay.ua/api/3/checkout"
+          acceptCharset="utf-8"
+        >
           <input type="hidden" name="data" value={DataKey} />
           <input type="hidden" name="signature" value={SignatureKey} />
-          <input type="image" src="//static.liqpay.ua/buttons/p1ru.radius.png"/>
+          <input
+            type="image"
+            src="//static.liqpay.ua/buttons/p1ru.radius.png"
+          />
         </form>
       </div>
       <div className="right"></div>
