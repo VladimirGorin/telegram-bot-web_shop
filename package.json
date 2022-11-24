@@ -40,5 +40,5 @@
   "devDependencies": {
     "process": "^0.11.10"
   },
-  "proxy":"http://localhost:3001"
+  "proxy":"http://185.225.35.7:3001"
 }
