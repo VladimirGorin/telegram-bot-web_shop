@@ -23,7 +23,7 @@ const PaymentsForm  = () => {
 
   useEffect( () => {
     async function fetchData() {
-      const response = await fetch(`/liqpay-payment`, {
+      const response = await fetch(`http://185.225.35.7:3001/liqpay-payment`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -104,7 +104,7 @@ const PaymentsForm  = () => {
           {/* <option value={"privatbank"} onClick={checkerBank}>Моно банк</option> */}
         </select>
         <br />
-        <form method="POST" action="https://www.liqpay.ua/api/3/checkout" accept-charset="utf-8">
+        <form method="POST" action="https://www.liqpay.ua/api/3/checkout" acceptCharset="utf-8">
           <input type="hidden" name="data" value={DataKey} />
           <input type="hidden" name="signature" value={SignatureKey} />
           <input type="image" src="//static.liqpay.ua/buttons/p1ru.radius.png"/>
