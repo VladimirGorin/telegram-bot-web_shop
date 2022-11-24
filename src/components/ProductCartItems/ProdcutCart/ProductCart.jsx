@@ -3,6 +3,19 @@ import "./ProductCart.css";
 import { Link } from "react-router-dom";
 
 function ProductCart(props) {
+
+  
+    
+  const sendFrom = () => {
+    let productInfo = {
+        "name": props.name,
+        "price": props.price
+
+    }
+
+    props.setFrom(productInfo)
+  }
+
   return (
     <div className="wrapper">
       <div className="product_details">
@@ -27,7 +40,7 @@ function ProductCart(props) {
           </div>
           <div className="product-buttons">
             <Link to="/paymentForm">
-              <button className="button">В корзину</button>
+              <button onClick={sendFrom} className="button">В корзину</button>
             </Link>
           </div>
         </div>

@@ -5,7 +5,7 @@ import { GetProduct } from '../GetProduct/GetProduct';
 import { useState } from 'react';
 import {Link, Route, Routes} from "react-router-dom";
 
-function Main({currentLink}) {
+function Main({currentLink, setFrom}) {
     const useProdcutState = GetProduct()
     const [link, setLink] = useState()
 
@@ -35,7 +35,11 @@ function Main({currentLink}) {
 
     }
 
+    const getFormData = (product) => {
 
+        setFrom(product)
+
+    }
     let product = ItemParams.map(p => <ProductItem name={p.name} 
             price={p?.price} 
             link={p?.link} 
@@ -46,6 +50,7 @@ function Main({currentLink}) {
             price_moth={p?.price_moth}
             id={p.id}
             productLink={productLinkUpdate}
+            setFrom={getFormData}
     />)
 
 

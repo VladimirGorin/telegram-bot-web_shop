@@ -14,12 +14,6 @@ function ProductItem(props) {
     const {tg,queryId} = useTelegram();
 
 
-    const onAdd = () => {
-        alert(
-            `Цена ${props.price} \nТовар ${props.name}`
-        )
-
-    }
     const cartProduct = () => {
         let productInfo = {
             "name": props.name[0],
@@ -31,6 +25,19 @@ function ProductItem(props) {
         
         props.productLink(productInfo)
 
+    }
+
+
+    
+    const sendFrom = () => {
+
+        let productInfo = {
+            "name": props.name[0],
+            "price": props.price[0]
+
+        }
+        
+        props.setFrom(productInfo)
     }
 
     return (
@@ -74,7 +81,7 @@ function ProductItem(props) {
                     <div className="main__bottom">
 
                         <Link onClick={cartProduct} to={props.link}><button  className="buy">Купить <br />один клик</button></Link>
-                        <Link to="/paymentForm" ><button onClick={onAdd} className="cart"><img src={shopingCart_Img} alt=""/></button></Link>
+                        <Link to="/paymentForm" ><button onClick={sendFrom} className="cart"><img src={shopingCart_Img} alt=""/></button></Link>
                     </div>
                 </div>
             </div>

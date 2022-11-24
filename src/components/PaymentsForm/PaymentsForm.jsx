@@ -3,7 +3,7 @@ import "./PaymentsForm.css";
 import { useTelegram } from "../../hooks/useTelegram";
 import axios from "axios";
 
-const PaymentsForm = () => {
+const PaymentsForm = (props) => {
   const [country, setCountry] = useState("");
   const [street, setStreet] = useState("");
   const [subject, setSubject] = useState("physical");
@@ -15,6 +15,9 @@ const PaymentsForm = () => {
 
   const [SignatureKey, setSignatureKey] = useState("");
   const [DataKey, setDataKey] = useState("");
+  const [buttonType, setButtonType] = useState("");
+  const [userInfo, setUserInfo] = useState("");
+
 
   const test = JSON.stringify({ value: "value" });
 
@@ -35,33 +38,42 @@ const PaymentsForm = () => {
   //       }),
   //     });
 
-  
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const response = await axios.post(
+  //       "http://185.225.35.7:3001/liqpay-payment",
+  //       {
+  //         public_key: "sandbox_i32225837954",
+  //         version: "3",
+  //         action: "pay",
+  //         amount: props?.price,
+  //         currency: "UAH",
+  //         description: `Опалата товара ${props?.name}`,
+  //         order_id: "000001",
+  //       }
+  //     );
+
+  //     const data = await response.data;
+  //     setApi(data);
+  //   }
+
+  //   fetchData();
+
+  //   // fetch("/api")
+  //   // .then(response => response.json())
+  //   // .then(res => setApi(res.payment))
+  // }, []);
+
   useEffect(() => {
-    async function fetchData() {
-      const response = await axios.post(
-        "http://185.225.35.7:3001/liqpay-payment",
-        {
-          public_key: "sandbox_i32225837954",
-          version: "3",
-          action: "pay",
-          amount: "3",
-          currency: "UAH",
-          description: "test",
-          order_id: "000001",
-        }
-      );
+    if(country === "" || telephone.length < 10){
+      setButtonType("hiddne")
+    }else{
+      setButtonType("image")
 
-      const data = await response.data;
-      setApi(data);
-      console.log(data);
     }
+  })
 
-    fetchData();
-
-    // fetch("/api")
-    // .then(response => response.json())
-    // .then(res => setApi(res.payment))
-  }, []);
   const onChangeCountry = (e) => {
     setCountry(e.target.value);
   };
@@ -80,6 +92,17 @@ const PaymentsForm = () => {
   const onChangeTelephone = (e) => {
     setTel(e.target.value);
   };
+
+  const sendDate = () => {
+
+
+    let object = {
+      "ИП": subject,
+      "Телефон": telephone,
+      "Город": country
+    }
+    setUserInfo(object)
+  }
 
   return (
     <div className={"form"}>
@@ -102,7 +125,7 @@ const PaymentsForm = () => {
           maxLength={"13"}
           autoCorrect=""
           autoCapitalize=""
-          placeholder={"Телефон"}
+          placeholder={"Телефон более 10 символов"}
           value={telephone}
           onChange={onChangeTelephone}
         />
@@ -120,10 +143,10 @@ const PaymentsForm = () => {
           action="https://www.liqpay.ua/api/3/checkout"
           acceptCharset="utf-8"
         >
-          <input type="hidden" name="data" value={DataKey} />
-          <input type="hidden" name="signature" value={SignatureKey} />
-          <input
-            type="image"
+          <input type="hidden" name="data" value="{DataKey}" />
+          <input type="hidden" name="signature" value="{SignatureKey}" />
+          <input className="button-send" onClick={sendDate}
+            type={buttonType}
             src="//static.liqpay.ua/buttons/p1ru.radius.png"
           />
         </form>

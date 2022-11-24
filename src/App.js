@@ -13,6 +13,7 @@ function App() {
     const {onToggleButton, tg} = useTelegram();
     const [link, setLink] = useState({"link":"abc", "name": "name", "price":"100", "img": "img"})
     const [Product, setProduct] = useState({"link":"abc", "name": "name", "price":"100", "img": "img"})
+    const [form, setFrom] = useState({"name":"name", "price": "price"})
 
 
     useEffect(() => {
@@ -20,13 +21,12 @@ function App() {
     }, [])
 
     const currentLink = (link) => {
-        setLink(link)
+        setProduct(link)
 
     } 
 
     const product = (p) => {
         setProduct(p)
-        console.log(p)
     } 
 
     return (
@@ -34,9 +34,9 @@ function App() {
             <Header product={product} />
             <Routes>
 
-                <Route path="/" element={<Main currentLink={currentLink} /> }  />
-                <Route path="/paymentForm" element={<PaymentsForm  />}  />  
-                <Route path={Product.link} element={<ProductCart name={Product.name} price={Product.price} img={Product.img} />}  />  
+                <Route path="/" element={<Main currentLink={currentLink} setFrom={setFrom} /> }  />
+                <Route path="/paymentForm" element={<PaymentsForm name={form.name} price={form.price} />}  />  
+                <Route path={Product.link} element={<ProductCart setFrom={setFrom} name={Product.name} price={Product.price} img={Product.img} />}  />  
 
             </Routes>
         </div>
