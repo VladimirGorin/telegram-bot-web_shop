@@ -5,6 +5,7 @@
     width: 100%;
     z-index: 150;
     background-color: white;
+    color: black;
     z-index: 1000;
     height: 100rem;
     
@@ -57,6 +58,7 @@
     width: 35%;
     padding: 10px;
     height: 30rem;
+    color: black;
 
     overflow-y: scroll;
 }
@@ -65,6 +67,7 @@
 .item, .item-in{
     margin: 10px 0;
     font-size: 16px;
+    color: black;
     text-decoration: none;
     min-height: 30px;
     align-items: center;
@@ -84,6 +87,8 @@
 
 .popup__item-info{
     display: flex;
+    color: black;
+
     flex-direction: column;
     width: 65%;
     padding: 10px;
