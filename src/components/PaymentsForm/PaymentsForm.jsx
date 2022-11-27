@@ -8,7 +8,7 @@ const PaymentsForm = (props) => {
   const [street, setStreet] = useState("");
   const [subject, setSubject] = useState("physical");
   const [telephone, setTel] = useState("");
-  const [payment, setPayment] = useState("liqpay");
+  const [payment, setPayment] = useState();
 
   const { tg } = useTelegram();
   const [api, setApi] = useState("");
@@ -135,6 +135,9 @@ const PaymentsForm = (props) => {
         </select>
         <select value={payment} className={"select"}>
           <option value={"liqpay"}>liqpay</option>
+          <option value={"uponDelivery"}>Оплата при отриманні товару</option>
+          <option value={"privatBank"}>На карту Приватбанку</option>
+          <option value={"byInvoice"}>По рахунку фактурі</option>
           {/* <option value={"privatbank"} onClick={checkerBank}>Моно банк</option> */}
         </select>
         <br />
