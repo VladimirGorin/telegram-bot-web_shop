@@ -53,7 +53,7 @@ function Main({currentLink, setFrom}) {
             setFrom={getFormData}
     />)
 
-    alert("Мамунчик?? Ты ёжик тебе незя выходи")
+        
 
     return (
         <div className="main">
