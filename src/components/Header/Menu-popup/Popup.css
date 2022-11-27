@@ -95,3 +95,7 @@
     height: 30rem;
     overflow-y: scroll;
 }
+
+.popup__item-info > a{
+    color: black;
+}
