@@ -68,6 +68,8 @@ p {
 	z-index: 1;
 	padding: 20px 0;
 	border: 2px solid  #1b1b1b;
+	color: var(--tg-theme-text-color);
+
 }
 
 
