@@ -17,7 +17,8 @@ export function GetProduct() {
             "prices": [p["Минимальная цена"]],
             "links": [p.hotline_url],
             "categori": [p["Название категории"]],
-            "price_moth": [p["Дата публикации"]]
+            "price_moth": [p["Дата публикации"]],
+            "product_name": [p["Название товара"]]
         }
         ))
     

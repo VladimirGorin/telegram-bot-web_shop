@@ -58,7 +58,6 @@
     width: 35%;
     padding: 10px;
     height: 30rem;
-    display:none;
 
     overflow-y: scroll;
 }
@@ -86,6 +85,8 @@
 }
 
 .popup__item-info{
+    display: flex;
+    flex-direction: column;
     width: 65%;
     padding: 10px;
     height: 30rem;
