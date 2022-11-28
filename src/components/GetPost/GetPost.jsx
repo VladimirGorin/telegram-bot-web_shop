@@ -7,11 +7,11 @@ import { Link } from "react-router-dom";
 function GetPost(props) {
   const [post, setPost] = useState()
 
-
+//
   useEffect(() => {
     async function fetchData() {
       const response = await axios.post(
-        "http://192.168.1.106:3005/post",
+        "http://185.225.35.7:3001/post",
         {}
       );
 
