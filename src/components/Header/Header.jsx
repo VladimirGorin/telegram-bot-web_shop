@@ -24,9 +24,6 @@ const Header = (props) => {
         <a onClick={getBack}>
           <div className="header__back">Назад</div>
         </a>
-        <a>
-          <div className="header__back">Поменял специально для тебя :D</div>
-        </a>
         <Link to={"/"}>
           <div className="header__logo">CTM.UA</div>
         </Link>
